@@ -20,7 +20,7 @@ env:
   # Some library use different name for library and repository. Version number may use library_name in source file.
   library_name: "FreeRTOS+TCP"
   # Source folder list for version number updates
-  source_folder_list: "source test"
+  source_folder_list: "source test tools"
 
 jobs:
   clean-existing-tag-and-release:
@@ -75,6 +75,7 @@ jobs:
 
       - name: Update version number in source files
         run: |
+            LIBRARY_NAME_REGEX=$( echo ${{ env.library_name }} | sed 's/\+/\\+/g' ) 
             echo "${{ env.source_folder_list }}" | \
             xargs -n 1 sh -c \
             'find $1 -type f \( -name "*.c" -o -name "*.h" \) \
