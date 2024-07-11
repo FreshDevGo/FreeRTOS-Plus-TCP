@@ -10,6 +10,7 @@ on:
         description: 'Release Version Number (Eg, v1.0.0)'
         required: true
 
+
 jobs:
   tag-commit:
     name: Tag commit
